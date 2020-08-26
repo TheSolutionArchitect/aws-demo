@@ -13,7 +13,6 @@ public class User {
 	private String userFName;
 	private String userLName;
 	private String status;
-	private Task tasks;
 	
 	public String getUserId() {
 		return userId;
@@ -38,13 +37,6 @@ public class User {
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
-	public Task getTasks() {
-		return tasks;
-	}
-	public void setTasks(Task tasks) {
-		this.tasks = tasks;
-	}
-	
+	}	
 	
 }
