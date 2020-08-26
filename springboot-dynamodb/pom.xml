@@ -18,22 +18,28 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+    <dependencyManagement>
+    <dependencies>
+    <!-- adding sdk-bom to import all other dependency of consistent version. make sure to mention the scope as import -->
+    <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-bom -->
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-bom</artifactId>
+		    <version>1.11.848</version>
+		    <type>pom</type>
+		    <scope>import</scope>
+		</dependency>
+	   </dependencies>
+    </dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
-		<dependency>
-		    <groupId>com.amazonaws</groupId>
-		    <artifactId>aws-java-sdk</artifactId>
-		    <version>1.11.848</version>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb -->
 		<dependency>
 		    <groupId>com.amazonaws</groupId>
 		    <artifactId>aws-java-sdk-dynamodb</artifactId>
-		    <version>1.11.848</version>
 		</dependency>		       
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
