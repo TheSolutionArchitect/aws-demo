@@ -37,7 +37,6 @@ public class ApplicationConfig {
 	/* Create the clients for others like S3, same as amazonDynamoDB method */
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {  
-    	
     	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
 				.withCredentials(new AWSStaticCredentialsProvider(amazonAWSCredentials()))
 				.withRegion(amazonDynamoDBRegion)
