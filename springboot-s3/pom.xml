@@ -9,42 +9,37 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.awstechguide.aws</groupId>
-	<artifactId>springboot-dynamodb</artifactId>
+	<artifactId>springboot-s3</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot-dynamodb</name>
-	<description>Demo project for Spring Boot and Amazon DynamoDB</description>
+	<name>springboot-s3</name>
+	<description>Demo project for Spring Boot and AWS S3</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-
-    <dependencyManagement>
-    <dependencies>
-    <!-- adding sdk-bom to import all other dependency of consistent version. make sure to mention the scope as import -->
-    <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-bom -->
-		<dependency>
-		    <groupId>com.amazonaws</groupId>
-		    <artifactId>aws-java-sdk-bom</artifactId>
-		    <version>1.11.848</version>
-		    <type>pom</type>
-		    <scope>import</scope>
-		</dependency>
-	   </dependencies>
-    </dependencyManagement>
+	<dependencyManagement>
+		<dependencies>
+			<!-- adding sdk-bom to import all other dependency of consistent version. 
+				make sure to mention the scope as import -->
+			<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-bom -->
+			<dependency>
+				<groupId>com.amazonaws</groupId>
+				<artifactId>aws-java-sdk-bom</artifactId>
+				<version>1.11.848</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-dynamodb -->
-		<dependency>
-		    <groupId>com.amazonaws</groupId>
-		    <artifactId>aws-java-sdk-dynamodb</artifactId>
-		</dependency>
-		<dependency>
+        <dependency>
 		    <groupId>com.amazonaws</groupId>
 		    <artifactId>aws-java-sdk-s3</artifactId>
-		</dependency>	       
+		</dependency>	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
