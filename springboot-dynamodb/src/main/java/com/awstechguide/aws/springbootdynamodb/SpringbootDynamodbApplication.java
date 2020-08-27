@@ -17,7 +17,8 @@ public class SpringbootDynamodbApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootDynamodbApplication.class, args);
 		
-		BasicAWSCredentials credentials = new BasicAWSCredentials("AKIAUOWLFFMUHQFGEQO3", "WYw19X7ua55O4Fcq0I+2z4ZCeSEMNEYsnKC99/jJ");
+		BasicAWSCredentials credentials = new BasicAWSCredentials("Accesskey",
+				"SecretAccessKey"); 
 		AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials)).build();
 		
 		//final AmazonS3 s3 = AmazonS3ClientBuilder.standard().build();
