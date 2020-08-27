@@ -7,18 +7,33 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAutoGenerateStrategy;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBGeneratedUuid;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author som@awstechguide.com
  *
  */
-
-@DynamoDBTable(tableName = "Users")
+/*
+ * @ToString
+ * 
+ * @NoArgsConstructor
+ * 
+ * @Setter
+ * 
+ * @Getter
+ * 
+ * @DynamoDBTable(tableName = "Users")
+ */
 public class User {
 
-	@DynamoDBHashKey
-    @DynamoDBGeneratedUuid(DynamoDBAutoGenerateStrategy.CREATE)
+	@DynamoDBHashKey(attributeName = "userid")
+    //@DynamoDBGeneratedUuid(DynamoDBAutoGenerateStrategy.CREATE)
 	private String userId;
 	
 	@DynamoDBAttribute

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.awstechguide.aws.springbootdynamodb.domain.User;
 import com.awstechguide.aws.springbootdynamodb.repository.UserDetailRepository;
 
+
 @RestController
 @RequestMapping("/awstg")
 public class UserController {
@@ -22,13 +23,13 @@ public class UserController {
 	
 	@GetMapping("/user/{userId}")
 	public ResponseEntity<User> getOneUser(@PathVariable String userId){
-		User user= userrepo.getUserDetails(userId);
+		User user= null;//userrepo.getUserDetails(userId);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
 	@PostMapping("/user")
 	public String saveUser(@RequestBody User user){
-		userrepo.addUserDetails(user);
+		//userrepo.addUserDetails(user);
 		return "Record Inserted Successfully";
 	}
 }
