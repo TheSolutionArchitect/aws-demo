@@ -2,13 +2,9 @@ package com.awstechguide.aws.springbootdynamodb.repository;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.amazonaws.auth.AWSCredentialsProvider;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.awstechguide.aws.springbootdynamodb.domain.Transaction;
@@ -20,16 +16,8 @@ import lombok.extern.java.Log;
 @Repository
 public class TransactionRepository implements TransactionService{
 
-	//AmazonDynamoDB client;
-	
-	AWSCredentialsProvider credentials = new AWSStaticCredentialsProvider(new BasicAWSCredentials("accesskey",
-			"secretaccesskey")); 
-	AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-			.withCredentials(credentials)
-			.withRegion("us-east-1")
-			.build();
-	
-	DynamoDBMapper mapper = new DynamoDBMapper(client);
+	@Autowired
+	DynamoDBMapper mapper;
 	
 	@Override
 	public String save(Transaction trn) {
