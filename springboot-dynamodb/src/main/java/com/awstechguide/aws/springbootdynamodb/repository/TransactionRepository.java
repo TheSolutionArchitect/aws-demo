@@ -28,15 +28,8 @@ public class TransactionRepository implements TransactionService{
 
 	@Override
 	public Transaction load(String transactionId) {
-		System.out.println("Calling Load: "+transactionId);
 		Transaction trn = new Transaction();
 		trn.setTransactionId(transactionId);	
-		System.out.println("Get transationID: "+trn.getTransactionId());
-		if(mapper==null) {
-			System.out.println("Mapper object is null");
-		}else {
-			System.out.println("Mapper object is NOT null"+mapper.toString());
-		}
 		Transaction tranc =mapper.load(trn);
 		return tranc;
 	}
