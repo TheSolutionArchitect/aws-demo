@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.awstechguide.aws.springbootdynamodb.domain.Transaction;
-import com.awstechguide.aws.springbootdynamodb.repository.TransactionRepository;
 import com.awstechguide.aws.springbootdynamodb.service.TransactionService;
 
 @RestController
@@ -19,18 +18,18 @@ import com.awstechguide.aws.springbootdynamodb.service.TransactionService;
 public class TransactionController {
 
 	@Autowired
-	TransactionRepository trancrepo;
+	TransactionService tranService;
 	
 	@GetMapping("/{trnId}")
 	public ResponseEntity<Transaction> getTransaction(@PathVariable String trnId){
 		System.out.println("******"+trnId);
-		Transaction trn = trancrepo.load(trnId);
+		Transaction trn = tranService.load(trnId);
 		return new ResponseEntity<Transaction>(trn, HttpStatus.OK);
 	}
 	
 	@PostMapping
 	public String save(@RequestBody Transaction trn){
-		trancrepo.save(trn);
+		tranService.save(trn);
 		return "Record Inserted Successfully";
 	}
 	
