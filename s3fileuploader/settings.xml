@@ -8,8 +8,8 @@
     </activation>
     <repositories>
       <repository>
-        <id>awstechguide--awstg-demo-repo</id>
-        <url>https://awstechguide-<aws account no>.d.codeartifact.us-east-1.amazonaws.com/maven/awstg-demo-repo/</url>
+        <id>awstechguide-awstg-demo-repo</id>
+        <url>https://awstechguide-<awsaccountno>.d.codeartifact.us-east-1.amazonaws.com/maven/awstg-demo-repo/</url>
       </repository>
     </repositories>
   </profile>

@@ -1,0 +1,21 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2MB
+      max-file-size: 20MB
+      max-request-size: 50MB
+
+awsconfig:
+  aws:
+    credentials:
+      access-key: ##############
+      secret-key: ##############
+    region:
+      static: us-east-1
+    stack:
+      auto: false
+  bucket:
+    name: awstg-s3-fileupload
+
+
