@@ -1,8 +1,8 @@
 cloud:
   aws:
     credentials:
-      access-key: asdasdasdasdasd
-      secret-key: asdasdasdasdasd
+      access-key: #####################
+      secret-key: #####################
     region:
       static: us-east-1
     stack:
@@ -10,7 +10,7 @@ cloud:
 
 application:
   bucket:
-    name: awstgs3fileuploadloc
+    name: awstg-s3-fileupload
 
 
 spring:
@@ -18,8 +18,8 @@ spring:
     multipart:
       enabled: true
       file-size-threshold: 2MB
-      max-file-size: 5MB
-      max-request-size: 10MB
+      max-file-size: 20MB
+      max-request-size: 50MB
 
 server:
   port: 9090

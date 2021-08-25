@@ -1,6 +1,8 @@
 package com.awstechguide.cms.s3fileuploader.controller;
 
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,7 @@ public class S3FileUploadController {
 	    private S3FileUploadService service;
 
 	    @PostMapping("/upload")
-	    public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file) {
+	    public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file) throws IOException {
 	        return new ResponseEntity<>(service.uploadFile(file), HttpStatus.OK);
 	    }
 
