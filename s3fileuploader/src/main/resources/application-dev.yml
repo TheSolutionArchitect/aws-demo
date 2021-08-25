@@ -6,15 +6,16 @@ spring:
       max-file-size: 20MB
       max-request-size: 50MB
 
-awsconfig:
+cloud:
   aws:
     credentials:
-      access-key: ##############
-      secret-key: ##############
+      profile-name: darkrose
     region:
       static: us-east-1
     stack:
       auto: false
+
+appconfig:      
   bucket:
     name: awstg-s3-fileupload
 

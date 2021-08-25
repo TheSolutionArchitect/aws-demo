@@ -3,6 +3,7 @@ package com.awstechguide.cms.s3fileuploader.config;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,19 +13,27 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AmazonConfig {
 
-	@Value("${awsconfig.aws.credentials.access-key}")
-	private String accessKey;
-
-	@Value("${awsconfig.aws.credentials.secret-key}")
-	private String accessSecret;
+	/*
+	 * @Value("${cloud.aws.credentials.access-key}") private String accessKey;
+	 * 
+	 * @Value("${cloud.aws.credentials.secret-key}") private String accessSecret;
+	 */
 	
-	@Value("${awsconfig.aws.region.static}")
+	@Value("${cloud.aws.region.static}")
 	private String region;
+	
+	@Value("${cloud.aws.credentials.profile-name}")
+	private String profileName;
 
-	@Bean
+	@Bean	
 	public AmazonS3 s3Client() {
-		AWSCredentials credentials = new BasicAWSCredentials(accessKey, accessSecret);
-		return AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials))
+		//AWSCredentials credentials = new BasicAWSCredentials(accessKey, accessSecret);
+		/*
+		 * return AmazonS3ClientBuilder.standard().withCredentials(new
+		 * AWSStaticCredentialsProvider(credentials)) .withRegion(region).build();
+		 */
+		
+		return AmazonS3ClientBuilder.standard().withCredentials(new ProfileCredentialsProvider(profileName))
 				.withRegion(region).build();
 	}
 

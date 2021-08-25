@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class S3FileUploadServiceImpl implements S3FileUploadService{
 	
-	    @Value("${awsconfig.bucket.name}")
+	    @Value("${appconfig.bucket.name}")
 	    private String bucketName;
 
 	    @Autowired
