@@ -30,17 +30,17 @@ public class S3FileUploadController {
 		return new ResponseEntity<>(service.uploadFile(file), HttpStatus.OK);
 	}
 
-	@GetMapping("/download/{fileName}")
-	public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileName) {
-		byte[] data = service.downloadFile(fileName);
+	@GetMapping("/download/{fileId}")
+	public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileId) {
+		byte[] data = service.downloadFile(fileId);
 		ByteArrayResource resource = new ByteArrayResource(data);
 		return ResponseEntity.ok().contentLength(data.length).header("Content-type", "application/octet-stream")
-				.header("Content-disposition", "attachment; filename=\"" + fileName + "\"").body(resource);
+				.header("Content-disposition", "attachment; fileId=\"" + fileId + "\"").body(resource);
 	}
 
-	@DeleteMapping("/delete/{fileName}")
-	    public ResponseEntity<String> deleteFile(@PathVariable String fileName) {
-	        return new ResponseEntity<>(service.deleteFile(fileName), HttpStatus.OK);
+	@DeleteMapping("/delete/{fileId}")
+	    public ResponseEntity<String> deleteFile(@PathVariable String fileId) {
+	        return new ResponseEntity<>(service.deleteFile(fileId), HttpStatus.OK);
 	    }
 
 	@GetMapping("/getmetadata")

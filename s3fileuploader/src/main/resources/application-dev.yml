@@ -14,6 +14,8 @@ cloud:
       static: us-east-1
     stack:
       auto: false
+    dynamodb:
+      region: us-east-1 
 
 appconfig:      
   bucket:
@@ -22,11 +24,11 @@ appconfig:
 security:
   oauth2:
     client:
-      client-id: ############
-      client-secret: ########################
-      access-token-uri: https://dev-############.okta.com/oauth2/default/v1/token
-      user-authorization-uri: https://dev-############.okta.com/oauth2/default/v1/authorize
+      client-id: ################
+      client-secret: ################################
+      access-token-uri: https://dev-################.okta.com/oauth2/default/v1/token
+      user-authorization-uri: https://dev-################.okta.com/oauth2/default/v1/authorize
       scope:
       - openid
     resource:
-      user-info-uri: https://dev-############.okta.com/oauth2/default/v1/userinfo
+      user-info-uri: https://dev-################.okta.com/oauth2/default/v1/userinfo
