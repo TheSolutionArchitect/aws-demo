@@ -18,5 +18,15 @@ cloud:
 appconfig:      
   bucket:
     name: awstg-s3-fileupload
-
-
+    
+security:
+  oauth2:
+    client:
+      client-id: ############
+      client-secret: ########################
+      access-token-uri: https://dev-############.okta.com/oauth2/default/v1/token
+      user-authorization-uri: https://dev-############.okta.com/oauth2/default/v1/authorize
+      scope:
+      - openid
+    resource:
+      user-info-uri: https://dev-############.okta.com/oauth2/default/v1/userinfo
