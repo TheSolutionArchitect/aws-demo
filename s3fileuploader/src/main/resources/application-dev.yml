@@ -24,11 +24,11 @@ appconfig:
 security:
   oauth2:
     client:
-      client-id: ################
-      client-secret: ################################
-      access-token-uri: https://dev-################.okta.com/oauth2/default/v1/token
-      user-authorization-uri: https://dev-################.okta.com/oauth2/default/v1/authorize
+      client-id: 0oa1m2jrpn6gAJ7ZV5d7
+      client-secret: 2ggzUxaMIDUsTltPs3oq3XCSgpbbO0KE0A8NMwHw
+      access-token-uri: https://dev-68599478.okta.com/oauth2/default/v1/token
+      user-authorization-uri: https://dev-68599478.okta.com/oauth2/default/v1/authorize
       scope:
       - openid
     resource:
-      user-info-uri: https://dev-################.okta.com/oauth2/default/v1/userinfo
+      user-info-uri: https://dev-68599478.okta.com/oauth2/default/v1/userinfo

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 
-@Component
+//@Component
 public class ClientInterceptor implements RequestInterceptor {
 	private static final String AUTHORIZATION_HEADER = "Authorization";
 	private static final String BEARER_TOKEN_TYPE = "Bearer";
