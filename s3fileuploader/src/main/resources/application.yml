@@ -6,7 +6,7 @@ spring:
 
 server:
   servlet:
-    context-path: /uploadfile
+    context-path: /uploader
   port: 9090
 
 

@@ -2,15 +2,16 @@ package com.awstechguide.cms.s3fileuploader;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 
-//@EnableOAuth2Sso
+@EnableOAuth2Sso
 @SpringBootApplication
 public class S3fileuploaderApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(S3fileuploaderApplication.class, args);
 	}
-	
+
 	/*
 	 * @Bean public RequestInterceptor getClientInterceptor() { return new
 	 * ClientInterceptor(); }
