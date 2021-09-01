@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.Date;
 
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -12,7 +15,6 @@ import org.apache.tika.parser.AutoDetectParser;
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
+import com.awstechguide.cms.s3fileuploader.domain.FileMetadata;
+import com.awstechguide.cms.s3fileuploader.domain.UserMetadata;
+import com.awstechguide.cms.s3fileuploader.service.FileMetadataService;
 import com.awstechguide.cms.s3fileuploader.service.S3FileUploadService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +44,9 @@ public class S3FileUploadServiceImpl implements S3FileUploadService {
 
 	@Autowired
 	private AmazonS3 s3Client;
+	
+	@Autowired
+	private FileMetadataService fileMetadataService;
 
 	@Override
 	public String uploadFile(MultipartFile file) throws IOException {
@@ -47,6 +55,7 @@ public class S3FileUploadServiceImpl implements S3FileUploadService {
 		String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename().replace(" ", "_");
 		try {
 			s3Client.putObject(new PutObjectRequest(bucketName, fileName, fileObj));
+			fileMetadataService.save(populateFileMetadata(fileObj));
 			fileObj.delete();
 			return "File Uploaded : " + fileName;
 		} catch (AmazonServiceException serviceException) {
@@ -59,8 +68,7 @@ public class S3FileUploadServiceImpl implements S3FileUploadService {
 	}
 
 	public void extractFileMetadata(File file) {
-		System.out.println("Calling extractFileMetadata");
-		// parameters of parse() method
+			
 		Parser parser = new AutoDetectParser();
 		BodyContentHandler handler = new BodyContentHandler();
 		Metadata metadata = new Metadata();
@@ -69,6 +77,7 @@ public class S3FileUploadServiceImpl implements S3FileUploadService {
 			inputstream = new FileInputStream(file);
 			ParseContext context = new ParseContext();
 			// Parsing the given file
+			
 			parser.parse(inputstream, handler, metadata, context);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -83,12 +92,14 @@ public class S3FileUploadServiceImpl implements S3FileUploadService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// list of meta data elements elements
-		System.out.println(" metadata elements and values of the given file :");
+		      
+		
 		String[] metadataNamesb4 = metadata.names();
+		//list of meta data elements before adding new elements
+	      log.info( " metadata elements :"  +Arrays.toString(metadata.names()));
 
 		for (String name : metadataNamesb4) {
-			System.out.println(name + ": " + metadata.get(name));
+			log.info(name + ": " + metadata.get(name));
 		}
 	}
 
@@ -119,5 +130,25 @@ public class S3FileUploadServiceImpl implements S3FileUploadService {
 			log.error("Error converting multipartFile to file", e);
 		}
 		return convertedFile;
+	}
+	
+	public FileMetadata populateFileMetadata(File file) {
+		FileMetadata fmd= new FileMetadata();
+		UserMetadata umd = new UserMetadata();
+		try {
+			fmd.setFileName(file.getName());
+			fmd.setFileUploadDate(new Date());
+			fmd.setFileSize(file.length());
+			fmd.setFileType(Files.probeContentType(file.toPath()));
+			umd.setUploadedByUserEmail("som@awstechguide.com");
+			umd.setUploadedByUserId("awstg");
+			umd.setUploadedByUserName("som");
+			fmd.setFileUserdata(umd);
+			System.out.print("fmd: " +fmd.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fmd;
 	}
 }

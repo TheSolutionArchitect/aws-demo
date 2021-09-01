@@ -19,7 +19,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @Setter
-@DynamoDBTable(tableName = "FileMetadata")
+@DynamoDBTable(tableName = "S3FileMetadata")
 public class FileMetadata {
 
 	@DynamoDBHashKey(attributeName = "fileId")
@@ -28,6 +28,12 @@ public class FileMetadata {
 	
 	@DynamoDBAttribute(attributeName = "filename")
 	private String fileName;
+	
+	@DynamoDBAttribute(attributeName = "filetype")
+	private String fileType;
+	
+	@DynamoDBAttribute(attributeName = "filesize")
+	private Long fileSize;
 	
 	@DynamoDBAttribute(attributeName = "version")
 	private Long fileVersion;

@@ -1,20 +1,7 @@
 package com.awstechguide.cms.s3fileuploader;
 
-import java.util.Collections;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.Ordered;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-
-import com.awstechguide.cms.s3fileuploader.config.ClientInterceptor;
-
-import feign.RequestInterceptor;
 
 //@EnableOAuth2Sso
 @SpringBootApplication
